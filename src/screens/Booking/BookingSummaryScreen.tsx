@@ -16,7 +16,7 @@ import colors from '../../const/colors';
 import { useNavigation } from '@react-navigation/native';
 
 const BookingSummaryScreen = () => {
-    const navigation =useNavigation();
+  const navigation = useNavigation();
   return (
     <ScrollView
       style={styles.container}
@@ -24,7 +24,7 @@ const BookingSummaryScreen = () => {
       showsVerticalScrollIndicator={false}
     >
       {/* Header */}
-      <Header />
+      <Header onProfile={()=>navigation.navigate('Profile'as never)} />
 
       {/* Title */}
       <View style={styles.titleRow}>
@@ -57,14 +57,13 @@ const BookingSummaryScreen = () => {
       {/* Ride Details */}
       <View style={styles.card}>
         <View style={styles.cardRide}>
-            <Feather name="clipboard" size={15} color={colors.btncolor}/>
+          <Feather name="clipboard" size={15} color={colors.btncolor} />
           <Text style={styles.cardTitle}>Your Ride Details</Text>
-         
         </View>
- <View style={styles.cardHeader}>
-        <Text style={styles.label}>Person</Text>
-         <Text style={styles.editText}>Edit</Text>
-         </View>
+        <View style={styles.cardHeader}>
+          <Text style={styles.label}>Person</Text>
+          <Text style={styles.editText}>Edit</Text>
+        </View>
         <Text style={styles.value}>5</Text>
 
         <View style={styles.cardHeader}>
@@ -99,9 +98,9 @@ const BookingSummaryScreen = () => {
 
       {/* Coupon */}
       <View style={styles.card}>
-            <View style={styles.cardRide}>
-        <Feather name='percent' size={14} color={colors.btncolor}/>
-        <Text style={styles.cardTitle}> Referral / Coupon Code</Text>
+        <View style={styles.cardRide}>
+          <Feather name="percent" size={14} color={colors.btncolor} />
+          <Text style={styles.cardTitle}> Referral / Coupon Code</Text>
         </View>
         <TextInput
           placeholder="Enter code"
@@ -111,7 +110,10 @@ const BookingSummaryScreen = () => {
       </View>
 
       {/* Pay Button */}
-      <TouchableOpacity style={styles.payButton} onPress={()=> navigation.navigate('Confirmed' as never)}>
+      <TouchableOpacity
+        style={styles.payButton}
+        onPress={() => navigation.navigate('Confirmed' as never)}
+      >
         <Text style={styles.payText}>Pay</Text>
       </TouchableOpacity>
     </ScrollView>

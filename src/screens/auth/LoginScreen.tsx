@@ -46,7 +46,7 @@ const LoginScreen = () => {
 
             <Text style={styles.label}>Phone Number</Text>
 
-            <TextInput
+             <TextInput
               keyboardType="number-pad"
               style={styles.input}
               placeholderTextColor="#999"

@@ -93,6 +93,10 @@ const styles = StyleSheet.create({
     fontSize:16,
     fontWeight:'700'
   },
+filterList: {
+  paddingHorizontal: 6,   // left space
+  paddingRight: 28,        // 👈 right-end scroll space
+},
 
   filterActive: {
     borderColor: '#FF7A00',

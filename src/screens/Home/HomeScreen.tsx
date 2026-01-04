@@ -25,10 +25,26 @@ interface Ghat {
   image: any;
 }
 const categories = [
-  { id: 1, title: 'Normal', image: require('../../../assets/images/category.png') },
-  { id: 2, title: 'Bajara', image: require('../../../assets/images/category2.png') },
-  { id: 3, title: 'Cruise', image: require('../../../assets/images/category3.png') },
-  { id: 4, title: 'Luxury', image: require('../../../assets/images/category4.png') },
+  {
+    id: 1,
+    title: 'Normal',
+    image: require('../../../assets/images/category.png'),
+  },
+  {
+    id: 2,
+    title: 'Bajara',
+    image: require('../../../assets/images/category2.png'),
+  },
+  {
+    id: 3,
+    title: 'Cruise',
+    image: require('../../../assets/images/category3.png'),
+  },
+  {
+    id: 4,
+    title: 'Luxury',
+    image: require('../../../assets/images/category4.png'),
+  },
 ];
 
 const ghats = [
@@ -48,12 +64,20 @@ const ghats = [
     image: require('../../../assets/images/image.png'),
   },
 ];
+const FILTERS = [
+  { id: 'filter', label: 'Filter :', type: 'grey' },
+  { id: 'sharing', label: 'Sharing', type: 'active' },
+  { id: 'full', label: 'Full Boat', type: 'inactive' },
+];
 
 const HomeScreen = () => {
-    const navigation=useNavigation();
+  const navigation = useNavigation();
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}   contentContainerStyle={{ paddingBottom: 0 }} >
-      
+    <ScrollView
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ paddingBottom: 0 }}
+    >
       {/* HEADER */}
       <View style={styles.header}>
         <Image
@@ -71,11 +95,11 @@ const HomeScreen = () => {
       <Text style={styles.welcomeText}>Welcome Sanjay</Text>
 
       {/* BANNER */}
-     <ImageBackground
-  source={require('../../../assets/images/boatbg.png')}
-  style={styles.bannerCard}
- // optional: for rounded corners, opacity, etc.
->
+      <ImageBackground
+        source={require('../../../assets/images/boatbg.png')}
+        style={styles.bannerCard}
+        // optional: for rounded corners, opacity, etc.
+      >
         <Image
           source={require('../../../assets/images/boat.png')}
           style={styles.bannerIcon}
@@ -85,61 +109,70 @@ const HomeScreen = () => {
 
       {/* CATEGORIES */}
       <Text style={styles.sectionTitle}>Category's to explore</Text>
+      <View style={styles.ghatRow}>
+        <FlatList
+          horizontal
+          data={FILTERS}
+          keyExtractor={item => item.id}
+          showsHorizontalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View style={{ width: 0 }} />}
+          renderItem={({ item }) => {
+            if (item.type === 'grey') {
+              return (
+                <View style={styles.filterGrey}>
+                  <Text style={styles.filterGreyText}>{item.label}</Text>
+                </View>
+              );
+            }
 
-    <ScrollView
-  horizontal
-  showsHorizontalScrollIndicator={false}
-  contentContainerStyle={{ paddingHorizontal: 16 }}
->
-  <View style={styles.filterGrey}>
-    <Text style={styles.filterGreyText}>Filter:</Text>
-  </View>
+            if (item.type === 'active') {
+              return (
+                <View style={styles.filterActive}>
+                  <Text style={styles.filterActiveText}>{item.label}</Text>
+                </View>
+              );
+            }
 
-  <View style={styles.filterActive}>
-    <Text style={styles.filterActiveText}>Sharing</Text>
-  </View>
+            return (
+              <View style={styles.filterInactive}>
+                <Text style={styles.filterInactiveText}>{item.label}</Text>
+              </View>
+            );
+          }}
+        />{' '}
+      </View>
 
-  <View style={styles.filterInactive}>
-    <Text style={styles.filterInactiveText}>Full Boat</Text>
-  </View>
-
- 
- 
-</ScrollView>
-
-    <ScrollView
-  horizontal
-  showsHorizontalScrollIndicator={false}
-  contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 10 }}
->
-  {categories.map((item: Category, index) => (
-    <CategoryCard
-      key={item.id}
-      item={{ ...item, id: item.id.toString() }}
-      style={{ marginRight: index === categories.length - 1 ? 0 : 12 }}
-      onPress={()=> navigation.navigate('BoatBookingScreen'as never)}
-    />
-  ))}
-</ScrollView>
-
+      <View style={styles.ghatRow}>
+        <FlatList
+          horizontal
+          data={categories}
+          keyExtractor={item => item.id.toString()}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 0 }}
+          ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
+          renderItem={({ item }) => (
+            <CategoryCard
+              item={item}
+              onPress={() => navigation.navigate('BoatBookingScreen' as never)}
+            />
+          )}
+        />
+      </View>
 
       {/* GHATS */}
       <Text style={styles.sectionTitle}>Ghats to board</Text>
 
       <View style={styles.ghatRow}>
-     <FlatList
-  data={ghats.map((item) => ({ ...item, id: item.id.toString() }))} // ensure id is string
-  horizontal
-  showsHorizontalScrollIndicator={false}
-  contentContainerStyle={{ paddingHorizontal: 0 }}
-  keyExtractor={(item) => item.id}
-  renderItem={({ item }) => <GhatCard item={item}  />}
-  
-/>
-
+        <FlatList
+          data={ghats.map(item => ({ ...item, id: item.id.toString() }))} // ensure id is string
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 0 }}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <GhatCard item={item} />}
+        />
       </View>
 
-  
       <ImageBackground
         source={require('../../../assets/images/footerimg.png')}
         style={styles.footerBg}

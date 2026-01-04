@@ -6,8 +6,9 @@ import {
   FlatList,
   ImageBackground,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/BookingScreenStyles';
-
 
 const DATA = [
   {
@@ -33,6 +34,7 @@ const DATA = [
 ];
 
 const MyBookingScreen = () => {
+  const navigation = useNavigation();
   const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
 
   const renderItem = ({ item }: any) => (
@@ -47,9 +49,8 @@ const MyBookingScreen = () => {
           <Text style={styles.statusText}>{item.status}</Text>
         </View>
 
-        <Text style={styles.title}>{item.title}</Text>
-
-        <Text style={styles.location}> {item.location}</Text>
+        <Text style={styles.cardTitle}>{item.title}</Text>
+        <Text style={styles.location}>{item.location}</Text>
 
         <Text style={styles.label}>Date & Time</Text>
         <Text style={styles.dateText}>{item.dateTime}</Text>
@@ -70,7 +71,16 @@ const MyBookingScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Tabs */}
+      {/* HEADER */}
+      <View style={styles.headerRow}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <MaterialIcons name="arrow-back-ios" size={18} />
+        </TouchableOpacity>
+
+        <Text style={styles.headerTitle}>My Booking</Text>
+      </View>
+
+      {/* TABS */}
       <View style={styles.tabRow}>
         <TouchableOpacity onPress={() => setActiveTab('upcoming')}>
           <Text
@@ -95,19 +105,19 @@ const MyBookingScreen = () => {
         </TouchableOpacity>
       </View>
 
-     <View style={styles.indicatorWrapper}>
-    <View
-      style={[
-        styles.tabIndicator,
-        { marginLeft: activeTab === 'upcoming' ? '0%' : '50%' },
-      ]}
-    />
-  </View>
+      <View style={styles.indicatorWrapper}>
+        <View
+          style={[
+            styles.tabIndicator,
+            { marginLeft: activeTab === 'upcoming' ? '0%' : '50%' },
+          ]}
+        />
+      </View>
 
-      {/* List */}
+      {/* LIST */}
       <FlatList
         data={DATA}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         renderItem={renderItem}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}

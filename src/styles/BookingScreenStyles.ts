@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../const/colors';
+import { hp, wp } from '../Responsive/responsive';
 
 const { width } = Dimensions.get('window');
 
@@ -8,11 +9,36 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  headerRow: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginBottom: 16,
+  marginLeft:20,
+  marginTop:25
+},
+cardTitle: {
+  fontSize: 16,
+  fontWeight: '600',
+  marginBottom: 4,
+},
+headerTitle: {
+  fontSize: 18,
+  fontWeight: '600',
+  marginLeft: 10,
+},
 
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: wp(2),
+    paddingHorizontal: wp(5),
+    marginBottom: hp(2),
+
+  },
   tabRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 20,
+    marginTop: 10,
   },
 
   tabText: {

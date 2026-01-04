@@ -27,7 +27,7 @@ const CategoryCard: React.FC<CategoryCardProps & { style?: any }> = ({ item, onP
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      style={[styles.card,{marginRight:10}, style]}
+      style={[styles.card,{marginRight:0}, style]}
       onPress={onPress}
     >
       <Image source={item.image} style={styles.image} />

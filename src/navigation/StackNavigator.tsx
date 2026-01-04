@@ -9,6 +9,7 @@ import BottomTabNavigator from './BottomTabNavigator';
 import BoatBookingScreen from '../screens/BoatBookingScreen';
 import BookingSummaryScreen from '../screens/Booking/BookingSummaryScreen';
 import BookingConfirmedScreen from '../screens/Booking/BookingConfirmedScreen';
+import MyProfileScreen from '../screens/MyProfileScreen';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -17,23 +18,24 @@ export type RootStackParamList = {
   Signup: undefined;
   Home: undefined;
   BoatBookingScreen: undefined;
-  BookingSummary:undefined;
-  Confirmed:undefined;
+  BookingSummary: undefined;
+  Confirmed: undefined;
+  Profile:undefined;
 };
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-     
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Otp" component={OtpScreen} />
-          <Stack.Screen name="Signup" component={SignupScreen} />
-     
-        <Stack.Screen name="Home" component={BottomTabNavigator} />
-        <Stack.Screen name="BoatBookingScreen" component={BoatBookingScreen}/>
-        <Stack.Screen name="BookingSummary" component={BookingSummaryScreen}/>
-        <Stack.Screen name="Confirmed" component ={BookingConfirmedScreen}/>
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Otp" component={OtpScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+
+      <Stack.Screen name="Home" component={BottomTabNavigator} />
+      <Stack.Screen name="BoatBookingScreen" component={BoatBookingScreen} />
+      <Stack.Screen name="BookingSummary" component={BookingSummaryScreen} />
+      <Stack.Screen name="Confirmed" component={BookingConfirmedScreen} />
+      <Stack.Screen name="Profile" component={MyProfileScreen}/>
     </Stack.Navigator>
   );
 };
