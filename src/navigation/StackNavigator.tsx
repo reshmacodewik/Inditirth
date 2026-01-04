@@ -1,4 +1,3 @@
-// src/navigation/StackNavigator.tsx
 import React, { useState, useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from '../screens/SplashScreen';
@@ -20,22 +19,25 @@ export type RootStackParamList = {
   BoatBookingScreen: undefined;
   BookingSummary: undefined;
   Confirmed: undefined;
-  Profile:undefined;
+  Profile: undefined;
 };
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const StackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      initialRouteName="Splash"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Otp" component={OtpScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
-
       <Stack.Screen name="Home" component={BottomTabNavigator} />
       <Stack.Screen name="BoatBookingScreen" component={BoatBookingScreen} />
       <Stack.Screen name="BookingSummary" component={BookingSummaryScreen} />
       <Stack.Screen name="Confirmed" component={BookingConfirmedScreen} />
-      <Stack.Screen name="Profile" component={MyProfileScreen}/>
+      <Stack.Screen name="Profile" component={MyProfileScreen} />
     </Stack.Navigator>
   );
 };
