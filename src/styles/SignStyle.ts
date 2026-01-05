@@ -7,11 +7,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
-
-  /* TOP WHITE AREA */
   topContainer: {
     alignItems: 'center',
-    paddingTop: height * 0.08,
+    paddingTop: height * 0.18,
     paddingBottom: 30,
   },
 
@@ -76,15 +74,11 @@ const styles = StyleSheet.create({
     marginBottom:20,
     
   },
-
-  /* FOOTER PINK AREA */
   footer: {
-    backgroundColor: '#FF7B0975', // pink footer
+    backgroundColor: '#FF7B0975',
     padding: 20,
     height: height * 0.15,
     opacity: 25
-
-   
   },
 
   button: {
@@ -123,7 +117,7 @@ const styles = StyleSheet.create({
   bottom: 0,
   width: width,
   height: height * 0.65,
-  pointerEvents: 'none', // 🔥 THIS FIXES IT
+  pointerEvents: 'none',
 },
 
 

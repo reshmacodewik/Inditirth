@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
   topContainer: {
     alignItems: 'center',
-    paddingTop: height * 0.08,
+    paddingTop: height * 0.18,
     paddingBottom: 40,
   },
 

@@ -73,8 +73,13 @@ const FILTERS = [
 const HomeScreen = () => {
   const navigation = useNavigation();
   return (
+    <ImageBackground
+      source={require('../../../assets/images/imgbg.png')}
+       style={styles.container}
+      resizeMode="cover"
+    >
     <ScrollView
-      style={styles.container}
+    
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingBottom: 0 }}
     >
@@ -173,11 +178,9 @@ const HomeScreen = () => {
         />
       </View>
 
-      <ImageBackground
-        source={require('../../../assets/images/footerimg.png')}
-        style={styles.footerBg}
-      />
+     
     </ScrollView>
+    </ImageBackground>
   );
 };
 

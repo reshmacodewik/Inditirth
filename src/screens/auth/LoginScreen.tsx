@@ -10,22 +10,28 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import styles from '../../styles/LoginStyles';
-import AppButton from '../../components/AppButton';
 import { useNavigation } from '@react-navigation/native';
 
+import styles from '../../styles/LoginStyles';
+import AppButton from '../../components/AppButton';
+
 const LoginScreen = () => {
-      const navigation = useNavigation();
+  const navigation = useNavigation<any>();
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === 'android' ? 'padding' : undefined}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      <View style={styles.mainContainer}>
-        {/* WHITE TOP SECTION */}
+      <ImageBackground
+        source={require('../../../assets/images/imgbg.png')}
+        style={styles.mainContainer}
+        resizeMode="cover"
+      >
         <ScrollView
           contentContainerStyle={styles.topContainer}
           keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
         >
           {/* Logo */}
           <Image
@@ -46,37 +52,32 @@ const LoginScreen = () => {
 
             <Text style={styles.label}>Phone Number</Text>
 
-             <TextInput
-              keyboardType="number-pad"
+            <TextInput
               style={styles.input}
+              keyboardType="number-pad"
+              placeholder="Enter phone number"
               placeholderTextColor="#999"
             />
-          <AppButton
-  title="Get OTP"
-  onPress={() => {
-    console.log('Get OTP pressed');
-    navigation.navigate('Otp' as never);
-  }}
-/>
 
+            <AppButton
+              title="Get OTP"
+              onPress={() => navigation.navigate('Otp')}
+            />
 
+            <View style={styles.signupRow}>
+              <Text style={styles.signupText}>
+                Create New Account?
+              </Text>
 
-          <View style={styles.signupRow}>
-            <Text style={styles.signupText}>Create New Account?</Text>
-            <TouchableOpacity>
-              <Text style={styles.signupLink}> SignUp</Text>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Signup')}
+              >
+                <Text style={styles.signupLink}> Sign Up</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
-
-        {/* PINK FOOTER SECTION */}
-       <ImageBackground
-        source={require('../../../assets/images/footerimg.png')} // your footer image
-        style={styles.footerBg}
-        resizeMode="cover"
-      />
-      </View>
+      </ImageBackground>
     </KeyboardAvoidingView>
   );
 };

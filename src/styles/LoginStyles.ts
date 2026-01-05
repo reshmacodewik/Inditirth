@@ -5,13 +5,13 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: colors.white,
+   
   },
 
   /* TOP WHITE AREA */
   topContainer: {
     alignItems: 'center',
-    paddingTop: height * 0.08,
+    paddingTop: height * 0.18,
     paddingBottom: 30,
   },
 

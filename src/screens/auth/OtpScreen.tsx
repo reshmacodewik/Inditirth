@@ -16,8 +16,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const OtpScreen = () => {
   const [otp, setOtp] = useState(['', '', '', '']);
- const inputs = useRef<Array<TextInput | null>>([]);
-const navigation = useNavigation();
+  const inputs = useRef<Array<TextInput | null>>([]);
+  const navigation = useNavigation();
 
   const handleChange = (text: string, index: number) => {
     if (!/^\d?$/.test(text)) return;
@@ -40,10 +40,13 @@ const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-    behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      <View style={styles.mainContainer}>
+      <ImageBackground
+        source={require('../../../assets/images/imgbg.png')}
+        style={styles.mainContainer}
+        resizeMode="cover"
+      >
         <ScrollView
           contentContainerStyle={styles.topContainer}
           keyboardShouldPersistTaps="handled"
@@ -61,9 +64,7 @@ const navigation = useNavigation();
               Welcome to <Text style={styles.highlight}>Inditirth Boat</Text>
             </Text>
 
-            <Text style={styles.subtitle}>
-              Sent OTP at +91 xxx xxx x32
-            </Text>
+            <Text style={styles.subtitle}>Sent OTP at +91 xxx xxx x32</Text>
 
             {/* OTP Boxes */}
             <View style={styles.otpRow}>
@@ -71,10 +72,9 @@ const navigation = useNavigation();
                 <TextInput
                   key={index}
                   autoFocus={false}
-
                   ref={ref => {
-            inputs.current[index] = ref;
-            }}
+                    inputs.current[index] = ref;
+                  }}
                   style={styles.otpInput}
                   keyboardType="number-pad"
                   maxLength={1}
@@ -89,7 +89,7 @@ const navigation = useNavigation();
 
             <AppButton
               title="Done"
-              onPress={()=> navigation.navigate('Signup'as never)}
+              onPress={() => navigation.navigate('Signup' as never)}
             />
 
             <View style={styles.resendRow}>
@@ -107,7 +107,7 @@ const navigation = useNavigation();
           style={styles.footerBg}
           resizeMode="cover"
         />
-      </View>
+      </ImageBackground>
     </KeyboardAvoidingView>
   );
 };

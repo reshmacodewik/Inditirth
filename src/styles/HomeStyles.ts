@@ -1,20 +1,21 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import HomeScreen from '../screens/Home/HomeScreen';
 import colors from '../const/colors';
+import { hp } from '../Responsive/responsive';
 
 const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+  
   },
 
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    marginTop: 10,
+    marginTop: hp(5),
   },
 
   logo: {
@@ -52,13 +53,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     padding: 20,
+    height: 150,
+ 
    
   },
 
   bannerIcon: {
-    width: 60,
-    height: 60,
+    width: 55,
+    height: 50,
     marginBottom: 10,
+    marginTop:10
   },
 
   bannerText: {
@@ -70,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     marginHorizontal: 20,
-    marginTop: 10,
+    marginTop: hp(2),
     marginBottom:10
   },
 
